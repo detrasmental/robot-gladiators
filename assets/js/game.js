@@ -168,52 +168,29 @@ var endGame = function() {
 var shop = function() {
   // ask player what they'd like to do
   var shopOptionPrompt = window.prompt(
-    'Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one "REFILL", "UPGRADE", or "LEAVE" to make a choice.'
-  );
+    "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
+    );
+
+   // converts answer from prompt to an actual number
+  shopOptionPrompt = parseInt(shopOptionPrompt);
 
   // use switch case to carry out action
   switch (shopOptionPrompt) {
-    case 'REFILL':
-    case 'refill':
-      if (playerInfo.money >= 7) {
-        window.alert("Refilling player's health by 20 for 7 dollars.");
-
-        // increase health and decrease money
-        playerInfo.health = playerInfo.health + 20;
-        playerInfo.money = playerInfo.money - 7;
-    }
-    else {
-        window.alert("You don't have enough money!");
-    }
+    case 1:
+      playerInfo.refillHealth();
       break;
-    case 'UPGRADE':
-    case 'upgrade':
-      if (playerInfo.money >= 7) {
-        window.alert("Upgrading player's attack by 6 for 7 dollars.");
-
-        // increase attack and decrease money
-        playerInfo.attack = playerInfo.attack + 6;
-        playerInfo.money = playerInfo.money - 7;
-    }
-    else {
-        window.alert("You don't have enough money!");
-    }
+    case 2:
+      playerInfo.upgradeAttack();
       break;
-    case 'LEAVE':
-    case 'leave':
-      window.alert('Leaving the store.');
-
-      // do nothing, so function will end
+    case 3:
+      window.alert("Leaving the store.");
       break;
     default:
-      window.alert('You did not pick a valid option. Try again.');
-
-      // call shop() again to force player to pick a valid option
+      window.alert("You did not pick a valid option. Try again.");
       shop();
       break;
   }
 };
-
 
 // function to set name
 var getPlayerName = function() {
